@@ -1,7 +1,9 @@
 #!/bin/sh
+mkdir /site
+git clone http://github.com/themue/site.themue.name.git /src
+cd /src
 while true
 do
-    cd /src
     git pull
     sleep 300
 done
