@@ -2,7 +2,10 @@
 SH=/bin/sh
 PULL=/pull.sh
 HUGO=/go/bin/hugo
-HUGO_THEME=hugo_theme_robust
+HUGO_SOURCE="--source=/src"
+HUGO_DESTINATION="--destination=/var/www/site"
+HUGO_ARGS="server $HUGO_SOURCE $HUGO_DESTINATION $@"
 
 $SH $PULL &
-$HUGO server --watch=true --source="/src" --theme="$HUGO_THEME" --destination="/var/www/site" --baseUrl="$HUGO_BASEURL" --bind="0.0.0.0" "$@" || exit 1
+$HUGO $HUGO_ARGS || exit 1
+# EOF
