@@ -3,5 +3,5 @@ while true
 do
     cd /src
     git pull
-    sleep 10
+    sleep 300
 done
