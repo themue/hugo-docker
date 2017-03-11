@@ -8,5 +8,6 @@ HUGO_BIND="--bind=0.0.0.0"
 HUGO_ARGS="server -v $HUGO_SOURCE $HUGO_DESTINATION $HUGO_BIND $@"
 
 $SH $PULL &
+sleep 10
 $HUGO $HUGO_ARGS || exit 1
 # EOF
