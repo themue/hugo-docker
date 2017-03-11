@@ -15,7 +15,7 @@ docker build -t hugo-docker .
 ## Running
 
 ```
-docker run --rm -p 1313:1313 -e SITE_REPOSITORY=<yoursite-repository> --name <yoursite> .
+docker run --rm -p 1313:1313 -e SITE_REPOSITORY=<yoursite-repository> --name <yoursite> hugo-docker
 ```
 
 Here `<yoursite-repository>` leads to your the repository containing
