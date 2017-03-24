@@ -23,9 +23,9 @@ RUN go get github.com/spf13/hugo
 COPY start.sh /start.sh
 COPY pull.sh /pull.sh
 
-CMD ["/bin/sh", "/start.sh"]
-
 EXPOSE 1313
+
+ENTRYPOINT ["/bin/sh", "/start.sh"]
 
 #
 # EOF
