@@ -1,8 +1,8 @@
 # Hugo Docker
 
-Simple way to run Hugo in a Docker container. The content is pulled
-periodically out of a GitHub repository. Hugo watches the source
-directory for changes and rebuilds the site.
+Simple way to run Hugo generating pages served by a nginxin a Docker container.
+The content is pulled periodically out of a GitHub repository. Hugo then rebuilds
+the site.
 
 ## Building
 
@@ -15,7 +15,7 @@ docker build -t hugo-docker .
 ## Running
 
 ```
-docker run -d -p 1313:1313 -e SITE_REPOSITORY=<yoursite-repository> --name <yoursite> hugo-docker
+docker run -d -p 8080:80 -e SITE_REPOSITORY=<yoursite-repository> --name <yoursite> hugo-docker
 ```
 
 Here `<yoursite-repository>` leads to your the repository containing
