@@ -10,7 +10,6 @@ GIT_PULL_ARGS="pull"
 HUGO=/go/bin/hugo
 HUGO_SOURCE="--source=$SOURCE"
 HUGO_DESTINATION="--destination=$DESTINATION"
-HUGO_BIND="--bind=0.0.0.0"
 HUGO_ARGS="$HUGO_SOURCE $HUGO_DESTINATION $@"
 
 SLEEP_ARGS=300
@@ -21,7 +20,7 @@ while true
 do
 	$GIT $GIT_SUBMODULE_ARGS
 	$GIT $GIT_PULL_ARGS
-	$HUGO $HUGO_ARGS || exit 1
+	$HUGO $HUGO_ARGS
 	sleep $SLEEP_ARGS
 done
 # EOF
