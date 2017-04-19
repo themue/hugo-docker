@@ -9,13 +9,13 @@ the site.
 ```
 git clone https://github.com/themue/hugo-docker.git
 cd hugo-docker
-docker build -t hugo-docker .
+sudo docker build -t hugo-docker .
 ```
 
 ## Running
 
 ```
-docker run -d -p 8080:80 --restart=unless-stopped -e SITE_REPOSITORY=<yoursite-repository> --name <yoursite> hugo-docker
+sudo docker run -d -p 8080:80 --restart=unless-stopped -e SITE_REPOSITORY=<yoursite-repository> --name <yoursite> hugo-docker
 ```
 
 Here `<yoursite-repository>` leads to your the repository containing

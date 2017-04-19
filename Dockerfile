@@ -7,7 +7,6 @@
 FROM debian:jessie
 LABEL vendor = "Frank Mueller <frank@mweb.de>"
 
-ENV NGINX_VERSION 1.11.12-1~jessie
 ENV GOPATH /go
 ENV GOROOT /usr/local/go
 ENV PATH $PATH:/usr/local/go/bin:/go/bin
@@ -20,12 +19,7 @@ RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC64107
 		curl \
 		git-core \
 		mercurial \
-		nginx=${NGINX_VERSION} \
-		nginx-module-xslt \
-		nginx-module-geoip \
-		nginx-module-image-filter \
-		nginx-module-perl \
-		nginx-module-njs \
+		nginx \
 		gettext-base \
 	&& rm -rf /var/lib/apt/lists/*
 
@@ -33,13 +27,13 @@ RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC64107
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log
 
-RUN curl -s https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz | tar -v -C /usr/local -xz
+RUN curl -s https://storage.googleapis.com/golang/go1.8.1.linux-amd64.tar.gz | tar -v -C /usr/local -xz
 RUN go get github.com/spf13/hugo
 
 COPY start.sh /start.sh
 COPY pull.sh /pull.sh
 
-EXPOSE 80 443
+EXPOSE 80
 
 ENTRYPOINT ["/bin/sh", "/start.sh"]
 
