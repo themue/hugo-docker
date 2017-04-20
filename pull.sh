@@ -1,6 +1,6 @@
 #!/bin/sh
 SOURCE="/src"
-DESTINATION="/usr/share/nginx/html"
+DESTINATION="/var/www/html"
 
 GIT=git
 GIT_CLONE_ARGS="clone --recursive $SITE_REPOSITORY $SOURCE"
