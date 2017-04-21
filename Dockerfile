@@ -1,7 +1,9 @@
 #
 # Dockerfile for a container running Hugo and
 # pulling its content from a Git repository passed
-# by the envirironment variable SITE_REPOSITORY.
+# by the envirironment variable SITE_REPOSITORY
+# and the branch passed by SITE_BRANCH. It's
+# master by default.
 #
 
 FROM debian:jessie
@@ -22,8 +24,8 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Forward request and error logs to docker log collector.
-RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-	&& ln -sf /dev/stderr /var/log/nginx/error.log
+RUN ln -sf /dev/stdout /var/log/nginx/access.log
+RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
 RUN curl -s https://storage.googleapis.com/golang/go1.8.1.linux-amd64.tar.gz | tar -v -C /usr/local -xz
 RUN go get github.com/spf13/hugo
