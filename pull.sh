@@ -12,7 +12,7 @@ GIT_DEFAULT_BRANCH="master"
 GIT_CLONE_ARGS="clone --recursive ${SITE_REPOSITORY} ${SOURCE}"
 GIT_CHECKOUT_ARGS="checkout ${SITE_BRANCH:-$GIT_DEFAULT_BRANCH}"
 GIT_SUBMODULE_ARGS="submodule update --recursive --remote"
-GIT_PULL_ARGS="pull"
+GIT_PULL_ARGS="pull --recurse-submodules"
 
 HUGO=/go/bin/hugo
 HUGO_SOURCE="--source=${SOURCE}"
@@ -27,8 +27,8 @@ ${GIT} ${GIT_CHECKOUT_ARGS}
 
 while true
 do
-	${GIT} ${GIT_SUBMODULE_ARGS}
 	${GIT} ${GIT_PULL_ARGS}
+	${GIT} ${GIT_SUBMODULE_ARGS}
 	${HUGO} ${HUGO_ARGS}
 	sleep ${SLEEP_ARGS}
 done
