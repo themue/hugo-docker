@@ -6,7 +6,7 @@
 # master by default.
 #
 
-FROM debian:jessie
+FROM debian:stretch
 LABEL vendor = "Frank Mueller <frank@mweb.de>"
 
 ENV GOPATH /go
@@ -21,19 +21,21 @@ RUN apt-get update \
 		mercurial \
 		nginx \
 		gettext-base \
+		procps \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Forward request and error logs to docker log collector.
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
-RUN curl -s https://storage.googleapis.com/golang/go1.8.1.linux-amd64.tar.gz | tar -v -C /usr/local -xz
+RUN curl -s https://storage.googleapis.com/golang/go1.10.3.linux-amd64.tar.gz | tar -v -C /usr/local -xz
 RUN go get github.com/spf13/hugo
 
 COPY start.sh /start.sh
 COPY pull.sh /pull.sh
 
 EXPOSE 80
+EXPOSE 443
 
 ENTRYPOINT ["/bin/sh", "/start.sh"]
 

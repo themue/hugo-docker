@@ -11,7 +11,7 @@ GIT=git
 GIT_DEFAULT_BRANCH="master"
 GIT_CLONE_ARGS="clone --recursive ${SITE_REPOSITORY} ${SOURCE}"
 GIT_CHECKOUT_ARGS="checkout ${SITE_BRANCH:-$GIT_DEFAULT_BRANCH}"
-GIT_SUBMODULE_ARGS="submodule update --init --recursive"
+GIT_SUBMODULE_ARGS="submodule update --recursive --remote"
 GIT_PULL_ARGS="pull"
 
 HUGO=/go/bin/hugo
