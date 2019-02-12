@@ -28,7 +28,7 @@ RUN apt-get update \
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
-RUN curl -s https://storage.googleapis.com/golang/go1.10.3.linux-amd64.tar.gz | tar -v -C /usr/local -xz
+RUN curl -s https://storage.googleapis.com/golang/go1.11.5.linux-amd64.tar.gz | tar -v -C /usr/local -xz
 RUN go get github.com/spf13/hugo
 
 COPY start.sh /start.sh
