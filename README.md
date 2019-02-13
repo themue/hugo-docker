@@ -1,12 +1,11 @@
 # Hugo Docker
 
-Simple way to run Hugo generating pages served by a nginx in a Docker container.
-The content is pulled periodically out of a GitHub repository. Hugo then rebuilds
-the site.
+Simple way to run Hugo generating pages served by a nginx in a Docker container. The content is pulled 
+periodically out of any Git repository. Hugo then rebuilds the site.
 
-The repository is passed by the variable `SITE_REPOSITORY`, the branch by
-`SITE_BRANCH`. The default branch is `master`. This way alternative configurations
-or work in progress can be tested in special containers.
+The repository is passed by the variable `SITE_REPOSITORY`, the branch by `SITE_BRANCH`. The default 
+branch is `master`. This way alternative configurations or work in progress can be tested in special
+containers.
 
 ## Building
 
@@ -22,5 +21,8 @@ sudo docker build -t hugo-docker .
 sudo docker run -d -p 8080:80 -e SITE_REPOSITORY=<repository> -e SITE_BRANCH=<branch> --name <name> hugo-docker
 ```
 
-Here `<yoursite-repository>` leads to your the repository containing
-the configuration and content of your site, e.g. at GitHub.
+Here
+
+- `<repository>` leads to your the repository containing the configuration and content of your site, e.g. on GitHub,
+- `<branch>` is `master`, `wip`, or similar,  and
+- `<name>` identifies your server in your docker pool, e.g. `www.mysite.org`.
