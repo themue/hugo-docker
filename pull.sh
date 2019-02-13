@@ -1,6 +1,6 @@
-#!/bin/bash
-SOURCE="/src"
-DESTINATION="/var/www/html"
+#!/bin/sh
+SOURCE="/hugo/src"
+DESTINATION="/var/www/localhost/htdocs"
 
 if [[ -z ${SITE_REPOSITORY} ]]
 then
@@ -14,22 +14,19 @@ GIT_CHECKOUT_ARGS="checkout ${SITE_BRANCH:-$GIT_DEFAULT_BRANCH}"
 GIT_SUBMODULE_ARGS="submodule update --recursive --remote"
 GIT_PULL_ARGS="pull --recurse-submodules"
 
-HUGO=/go/bin/hugo
+HUGO=/hugo/hugo
 HUGO_SOURCE="--source=${SOURCE}"
 HUGO_DESTINATION="--destination=${DESTINATION}"
 HUGO_ARGS="${HUGO_SOURCE} ${HUGO_DESTINATION} $@"
 
-SLEEP_ARGS=300
+if [[ ! -d ${SOURCE}/.git/ ]]
+then
+	${GIT} ${GIT_CLONE_ARGS}
+	cd ${SOURCE}
+	${GIT} ${GIT_CHECKOUT_ARGS}
+fi
 
-${GIT} ${GIT_CLONE_ARGS}
-cd ${SOURCE}
-${GIT} ${GIT_CHECKOUT_ARGS}
-
-while true
-do
-	${GIT} ${GIT_PULL_ARGS}
-	${GIT} ${GIT_SUBMODULE_ARGS}
-	${HUGO} ${HUGO_ARGS}
-	sleep ${SLEEP_ARGS}
-done
+${GIT} ${GIT_PULL_ARGS}
+${GIT} ${GIT_SUBMODULE_ARGS}
+${HUGO} ${HUGO_ARGS}
 # EOF
