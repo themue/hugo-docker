@@ -26,7 +26,7 @@ RUN go get github.com/spf13/hugo
 # -----
 
 FROM alpine:latest
-LABEL maintainer = "Frank Mueller <frank@mweb.de>"
+LABEL maintainer = "Frank Mueller <frank.mueller@themue.dev>"
 
 RUN apk add --no-cache ca-certificates
 RUN apk add --no-cache git
