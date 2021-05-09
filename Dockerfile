@@ -10,16 +10,9 @@
 # Stage 1: Build latest Hugo.
 # -----
 
-FROM alpine:latest as builder
+FROM golang:latest as builder
 
-RUN apk add --no-cache ca-certificates
-RUN apk add --no-cache git
-RUN apk add --no-cache mercurial
-RUN apk add --no-cache gcc
-RUN apk add --no-cache musl-dev
-RUN apk add --no-cache go
-
-RUN go get github.com/gohugoio/hugo
+RUN go install github.com/gohugoio/hugo@latest
 
 # -----
 # Stage 2: Runtime.
@@ -37,7 +30,7 @@ RUN mkdir -p /hugo/src
 WORKDIR /hugo
 
 COPY default.conf /etc/nginx/conf.d/
-COPY --from=builder /root/go/bin/hugo .
+COPY --from=builder /go/bin/hugo .
 COPY start.sh .
 COPY pull.sh .
 
