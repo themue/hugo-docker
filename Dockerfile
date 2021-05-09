@@ -19,7 +19,7 @@ RUN apk add --no-cache gcc
 RUN apk add --no-cache musl-dev
 RUN apk add --no-cache go
 
-RUN go get github.com/spf13/hugo
+RUN go get github.com/gohugoio/hugo
 
 # -----
 # Stage 2: Runtime.
